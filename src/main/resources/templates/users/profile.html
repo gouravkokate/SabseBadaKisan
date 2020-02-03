@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="partials::head('My Profile')"></head>
+<body>
+<div th:replace="partials::header"></div>
+<div th:replace="partials::navbar"></div>
+<main role="main" class="uk-container">
+    <div class="uk-grid-small uk-child-width-expand@s uk-grid uk-grid-medium uk-margin-medium-top">
+        <div>
+
+        <div class="custom-card uk-border-rounded">
+                <h1>Profile</h1>
+                Username:
+                <label class="uk-label" th:text="${user.getUsername()}" />
+                <br />
+                Email:
+                <label class="uk-label" th:text="${user.getEmail()}" />
+                <br />
+                First Name:
+                <label class="uk-label" th:text="${user.getFirst_name()}" />
+                <br />
+                Last Name:
+                <label class="uk-label" th:text="${user.getLast_name()}" />
+                <br />
+                Address 1:
+                <label class="uk-label" th:text="${user.getAddress1()}" />
+                <br />
+                Address 2:
+                <label class="uk-label" th:text="${user.getAddress2()}" />
+                <br />
+                City:
+                <label class="uk-label" th:text="${user.getCity()}" />
+                <br />
+                State:
+                <label class="uk-label" th:text="${user.getState()}" />
+                <br />
+                Zip Code:
+                <label class="uk-label" th:text="${user.getPostalCode()}" />
+                <br />
+                Phone Number:
+                <label class="uk-label" th:text="${user.getPhone_number()}" />
+                <br />
+                DOB:
+                <label type="date" class="uk-label" th:text="${user.getDob()}" />
+                <br />
+
+                <a href="/profile/edit"><input type="button" class="uk-button uk-button-primary uk-button-small uk-border-rounded uk-align-center" value="Edit Profile" /></a>
+        </div>
+        </div>
+
+        <div>
+        <div class="custom-card uk-border-rounded">
+            <img th:src="${userInfo.img_url}" style="width: 150px; height: 100px;" alt="" />
+            <form th:action="@{/profile}" method="POST">
+                <input type="hidden" class="uk-input uk-border-rounded" id="upload_url" name="upload_url" />
+                <input class="uk-button uk-button-primary uk-button-small uk-border-rounded" type="button" name="upload_id" id="upload_id" value="Upload ID" onclick="openPick()" />
+                <input class="uk-button uk-button-primary uk-button-small uk-border-rounded" type="submit" value="Submit ID" />
+            </form>
+        </div>
+        </div>
+    </div>
+</main><!-- /.container -->
+<div th:replace="partials::footer"></div>
+<div th:replace="partials::scripts"></div>
+
+<!--<script>-->
+    <!--var url = “”;-->
+    <!--var fileStack = document.getElementById(“filestack”);-->
+    <!--fileStack.addEventListener(‘click’, function () {-->
+        <!--const apikey = ‘AZpH4QD4CQTyWCvqtlovwz’;-->
+        <!--const client = filestack.init(apikey);-->
+        <!--const options = {-->
+            <!--maxFiles: 20,-->
+            <!--uploadInBackground: false,-->
+            <!--onOpen: () => console.log(‘opened!’),-->
+        <!--onUploadDone: (res) => url = res.filesUploaded[0].url,-->
+    <!--};-->
+        <!--console.log(url);-->
+        <!--client.picker(options).open();-->
+    <!--});-->
+    <!--document.getElementById(“submit”).addEventListener(“click”, function () {-->
+        <!--document.getElementById(“fileStackUrl”).value = url;-->
+    <!--});-->
+    <!--let change = () => {-->
+        <!--document.getElementById(“filestack”).innerText =“Change Picture”;-->
+    <!--}-->
+<!--</script>-->
+
+
+
+</body>
+</html>

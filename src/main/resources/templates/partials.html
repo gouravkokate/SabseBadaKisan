@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+
+<!--<div th:fragment="head (title)" >-->
+<!--<title><span th:text="${title}"></span></title>-->
+<!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>-->
+<!--</div>-->
+<head th:fragment="head(title)">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.2/css/uikit.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Indie+Flower" />
+    <link rel="stylesheet" href="/static/css/components/slideshow.css" />
+    <link rel="stylesheet" href="/static/css/components/slidenav.css" />
+
+    <style>
+        .uk-card>p {
+            word-wrap: break-word;
+        }
+        .h5-liner {
+            height: 33px;
+            overflow: hidden;
+        }
+        .custom-card {
+            padding: 30px;
+            background-color: whitesmoke;
+
+        }
+        .about-icon {
+            color: black;
+        }
+        .about-icon:hover {
+            color: silver;
+        }
+        .nav-color {
+            opacity: .98;
+            background-color: maroon !important;
+
+        }
+        nav>div>ul>li>a>div>span {
+            color: whitesmoke;
+        }
+        nav>div>ul>li>a>span {
+            color: whitesmoke;
+        }
+        nav>div>ul>li>a>div {
+            color: whitesmoke;
+        }
+        nav>div>ul>li>form>button>span {
+            color: whitesmoke;
+        }
+        nav>div>ul>li>a>i {
+            color: whitesmoke;
+        }
+        .opacity-85 {
+            opacity: 0.85;
+            filter: alpha(opacity=85);
+        }
+        .opacity-55 {
+            opacity: 0.55;
+            filter: alpha(opacity=55);
+        }
+        .login-up {
+            top: 260px;
+        }
+        .sign-up {
+            top: 330px;
+        }
+        .list-font {
+            font-size: 22px;
+        }
+        .list-font-nav {
+            font-size: 18px;
+        }
+        .indie {
+            font-family: "Arial Narrow";
+            font-size: 42px;
+            color: black;
+            text-shadow: 2px 2px silver;
+        }
+        .indie-small {
+            font-family: 'Indie Flower';
+            font-size: 38px;
+            color: #0f7ae5;
+            text-shadow: 2px 2px #444444;
+        }
+        .circle-radius {
+            border-radius: 50%;
+        }
+        .checkout-box {
+            padding: 10px;
+        }
+        .padding-8 {
+            padding: 8px;
+        }
+        .padding-14 {
+            padding: 14px;
+        }
+        .remove-top-padding {
+            padding-top: 0px;
+        }
+        .margin-right-10 {
+            margin-right: 10px;
+        }
+        .remove-margin {
+            margin: 0px;
+        }
+        .remove-margin-top {
+            margin-top: 0px;
+        }
+        .remove-bottom-margin {
+            margin-bottom: 0px;
+        }
+        .driver-card {
+            border: 1px solid lightgray;
+            background-color: white;
+
+        }
+        .product-card-color {
+            background-color: whitesmoke;
+        }
+        .product-card {
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+        }
+        .uk-card-hover:hover {
+            background-image: none;
+        }
+
+        .uk-navbar-dropdown-nav {
+            display: none;
+        }
+        .table-center {
+            margin: 0px auto;
+
+        }
+
+        header {
+            background-color: dodgerblue;
+        }
+        body, html {
+            background-image: url("https://cdn.discordapp.com/attachments/178547154908872704/542412452688560138/blackandwhitebackground.jpg");
+            background-color: rgb(244,247,249);
+            background-repeat: repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .slideshow-img {
+            !important;
+            max-width: max-content;
+        }
+        .ml-1 {
+            margin-left: 20px;
+        }
+        .mt-1 {
+            margin-top: 20px;
+        }
+        .logo-size {
+            width: 350px;
+            height: 75px;
+        }
+        .login-logout {
+            margin-top: 25px;
+        }
+        .header-text-color {
+            color: whitesmoke;
+        }
+        .header-text-color-center {
+            color: #595959;
+        }
+        .kl-form {
+            border: 1px solid lightgray;
+            border-radius: 25px;
+            background-color: white;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div th:fragment="header">
+    <header>
+    </header>
+</div>
+
+<nav th:fragment="navbar" class="uk-navbar uk-navbar-container nav-color uk-visible@m" style="z-index: 980;" uk-sticky="top: 100; animation: uk-animation-slide-top; bottom: #sticky-on-scroll-up" sec:authorize="!isAuthenticated()">
+    <div class="uk-navbar-left">
+
+        <ul class="uk-navbar-nav uk-nav-parent-icon">
+            <li><a href="/"><img class="logo-size" src="https://cdn.discordapp.com/attachments/178547154908872704/542894571026251777/kwikr-logo2.png" alt="kwikrLogo"/></a></li>
+            <li><a href="/products/beer"><div><span class="list-font-nav">Beer</span></div></a></li>
+            <li><a href="/products/wine"><div><span class="list-font-nav">Wine</span></div></a></li>
+            <li><a href="/products/liquor"><div><span class="list-font-nav">Liquor</span></div></a></li>
+            <li><a href="/about"><div><span class="list-font-nav">About</span></div></a></li>
+        </ul>
+    </div>
+    <div class="uk-navbar-right">
+        <ul class="uk-navbar-nav">
+            <li>
+                <form th:action="@{/login}" th:method="GET">
+                    <button class="uk-button uk-button-default uk-button-small login-logout" type="submit"><span>Login</span></button>
+                </form>
+            </li>
+            <li>
+                <a href="/shoppingCart"><i class="fas fa-shopping-cart fa-3x" /></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<nav th:fragment="navbar" class="uk-navbar uk-navbar-container nav-color uk-hidden@m" style="z-index: 980;" uk-sticky="top: 100; animation: uk-animation-slide-top; bottom: #sticky-on-scroll-up" sec:authorize="!isAuthenticated()">
+    <div class="uk-navbar-left">
+
+        <ul class="uk-navbar-nav uk-nav-parent-icon">
+            <li><a href="/"><img class="logo-size" src="https://cdn.discordapp.com/attachments/178547154908872704/542894571026251777/kwikr-logo2.png" alt="kwikrLogo"/></a></li>
+        </ul>
+    </div>
+    <div class="uk-navbar-right">
+        <a href="#"><div class="uk-text-large margin-right-10"><i class="fas fa-bars"></i></div></a>
+        <ul class="uk-nav uk-navbar-dropdown-nav" uk-dropdown="pos:left-bottom">
+            <li><a href="/products/beer"><label>Beer</label></a></li>
+            <li><a href="/products/wine"><label>Wine</label></a></li>
+            <li><a href="/products/liquor"><label>Liquor</label></a></li>
+            <li><a href="/about"><label>About</label></a></li>
+            <li class="uk-nav-divider"></li>
+            <li>
+                <div class="uk-grid">
+                    <div class="uk-width-1-2">
+                    <a href="/login"><input class="uk-button uk-button-default uk-button-small login-logout" style="margin-top: 0px;" type="submit" value="Login"/></a>
+                    </div>
+                    <div class="uk-width-1-2">
+                    <a href="/shoppingCart"><i class="fas fa-shopping-cart fa-2x" /></a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+        <!--<ul class="uk-navbar-nav uk-nav-parent-icon">-->
+            <!--<div sec:authorize="isAuthenticated()">-->
+                <!--<li>-->
+                    <!--<form th:action="@{/logout}" th:method="POST">-->
+                        <!--<input class="uk-button uk-button-default uk-button-small login-logout" type="submit" value="Logout"/>-->
+                    <!--</form>-->
+                <!--</li>-->
+            <!--</div>-->
+            <!--<div sec:authorize="!isAuthenticated()">-->
+                <!--<li>-->
+                    <!--<form th:action="@{/login}" th:method="GET">-->
+                        <!--<input class="uk-button uk-button-default uk-button-small login-logout" type="submit" value="Login"/>-->
+                    <!--</form>-->
+                <!--</li>-->
+            <!--</div>-->
+        <!--</ul>-->
+
+
+<nav th:fragment="navbar" class="uk-navbar uk-navbar-container nav-color uk-visible@m" style="z-index: 980;" uk-sticky="top: 100; animation: uk-animation-slide-top; bottom: #sticky-on-scroll-up" sec:authorize="hasRole('ROLE_CUSTOMER')">
+    <div class="uk-navbar-left">
+        <ul class="uk-navbar-nav uk-nav-parent-icon">
+            <li><a href="/"><img class="logo-size" src="https://cdn.discordapp.com/attachments/178547154908872704/542894571026251777/kwikr-logo2.png" alt="kwikrLogo"/></a></li>
+            <li><a href="/products/beer"><div><span class="list-font-nav">Beer</span></div></a></li>
+            <li><a href="/products/wine"><div><span class="list-font-nav">Wine</span></div></a></li>
+            <li><a href="/products/liquor"><div><span class="list-font-nav">Liquor</span></div></a></li>
+            <li><a href="/about"><div><span class="list-font-nav">About</span></div></a></li>
+        </ul>
+    </div>
+    <div class="uk-navbar-right">
+        <ul class="uk-navbar-nav uk-nav-parent-icon">
+            <li class="uk-inline">
+                <a href="#"><div class="uk-text-large" sec:authentication="name"></div></a>
+                <ul class="uk-nav uk-navbar-dropdown-nav" uk-dropdown="mode: click; pos:left-bottom;">
+                    <li><a th:href="@{'/my-orders'}"><span class="list-font">My Orders</span></a></li>
+                    <li><a th:href="@{'/profile'}"><span class="list-font">Profile</span></a></li>
+                    <li class="uk-nav-divider"></li>
+                    <li>
+                        <form th:action="@{/logout}" th:method="POST">
+                            <input class="uk-button uk-button-default uk-button-small login-logout" type="submit" value="Logout"/>
+                        </form>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="/shoppingCart"><i class="fas fa-shopping-cart fa-3x" /></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<nav th:fragment="navbar" class="uk-navbar uk-navbar-container nav-color uk-hidden@m" style="z-index: 980;" uk-sticky="top: 100; animation: uk-animation-slide-top; bottom: #sticky-on-scroll-up" sec:authorize="hasRole('ROLE_CUSTOMER')">
+    <div class="uk-navbar-left">
+        <ul class="uk-navbar-nav uk-nav-parent-icon">
+            <li><a href="/"><img class="logo-size" src="https://cdn.discordapp.com/attachments/178547154908872704/542894571026251777/kwikr-logo2.png" alt="kwikrLogo"/></a></li>
+        </ul>
+    </div>
+    <div class="uk-navbar-right">
+        <a href="#"><div class="uk-text-large margin-right-10"><i class="fas fa-bars"></i></div></a>
+        <ul class="uk-nav uk-navbar-dropdown-nav" uk-dropdown="pos:left-bottom">
+            <li><a th:href="@{'/my-orders'}">My Orders</a></li>
+            <li><a th:href="@{'/profile'}">Profile</a></li>
+            <li><a href="/products/beer"><label>Beer</label></a></li>
+            <li><a href="/products/wine"><label>Wine</label></a></li>
+            <li><a href="/products/liquor"><label>Liquor</label></a></li>
+            <li><a href="/about"><label>About</label></a></li>
+            <li class="uk-nav-divider"></li>
+            <li>
+                <span class="uk-text-large uk-text-capitalize" sec:authentication="name"></span>
+            </li>
+            <li>
+                <div class="uk-grid">
+                    <div class="uk-width-1-2">
+                        <form th:action="@{/logout}" th:method="POST">
+                            <input class="uk-button uk-button-default uk-button-small login-logout" style="margin-top: 0px;" type="submit" value="Logout"/>
+                        </form>
+                    </div>
+                    <div class="uk-width-1-2">
+                        <a href="/shoppingCart"><i class="fas fa-shopping-cart fa-2x uk-align-center" /></a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<nav th:fragment="navbar" class="uk-navbar uk-navbar-container nav-color uk-visible@m" style="z-index: 980;" uk-sticky="top: 100; animation: uk-animation-slide-top; bottom: #sticky-on-scroll-up" sec:authorize="hasRole('ROLE_ADMIN')">
+    <div class="uk-navbar-left">
+        <ul class="uk-navbar-nav uk-nav-parent-icon">
+            <li><a href="/"><img class="logo-size" src="https://cdn.discordapp.com/attachments/178547154908872704/542894571026251777/kwikr-logo2.png" alt="kwikrLogo"/></a></li>
+            <li><a href="/products/create"><span class="list-font-nav">Create Product</span></a></li>
+            <li><a href="/admin-dashboard"><span class="list-font-nav">Admin Dashboard</span></a></li>
+            <li><a href="/about"><div><span class="list-font-nav">About</span></div></a></li>
+        </ul>
+    </div>
+    <div class="uk-navbar-right">
+        <ul class="uk-navbar-nav uk-nav-parent-icon">
+            <li class="uk-inline">
+                <a href="#"><div class="uk-text-large" sec:authentication="name"></div></a>
+                <ul class="uk-nav uk-navbar-dropdown-nav" uk-dropdown="mode: click; pos:left-bottom;">
+                    <li><a th:href="@{'/profile'}"><span class="list-font">Profile</span></a></li>
+                    <li class="uk-nav-divider"></li>
+                    <li>
+                        <form th:action="@{/logout}" th:method="POST">
+                            <input class="uk-button uk-button-default uk-button-small login-logout" type="submit" value="Logout"/>
+                        </form>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<nav th:fragment="navbar" class="uk-navbar uk-navbar-container nav-color uk-hidden@m" style="z-index: 980;" uk-sticky="top: 100; animation: uk-animation-slide-top; bottom: #sticky-on-scroll-up" sec:authorize="hasRole('ROLE_ADMIN')">
+    <div class="uk-navbar-left">
+        <ul class="uk-navbar-nav uk-nav-parent-icon">
+            <li><a href="/"><img class="logo-size" src="https://cdn.discordapp.com/attachments/178547154908872704/542894571026251777/kwikr-logo2.png" alt="kwikrLogo"/></a></li>
+        </ul>
+    </div>
+    <div class="uk-navbar-right">
+        <a href="#"><div class="uk-text-large margin-right-10"><i class="fas fa-bars"></i></div></a>
+        <ul class="uk-nav uk-navbar-dropdown-nav" uk-dropdown="pos:left-bottom">
+            <li><a th:href="@{'/profile'}">Profile</a></li>
+            <li><a href="/products/create">Create Product</a></li>
+            <li><a href="/admin-dashboard">Admin Dashboard</a></li>
+            <li><a href="/about"><label>About</label></a></li>
+            <li class="uk-nav-divider"></li>
+            <li>
+                <span class="uk-text-large uk-text-capitalize" sec:authentication="name"></span>
+            </li>
+            <li>
+                <div class="uk-grid">
+                    <div class="uk-width-1-2">
+                        <form th:action="@{/logout}" th:method="POST">
+                            <input class="uk-button uk-button-default uk-button-small login-logout" style="margin-top: 0px;" type="submit" value="Logout"/>
+                        </form>
+                    </div>
+                    <div class="uk-width-1-2">
+                        <a href="/shoppingCart"><i class="fas fa-shopping-cart fa-2x uk-align-center" /></a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<nav th:fragment="navbar" class="uk-navbar uk-navbar-container nav-color uk-visible@m" style="z-index: 980;" uk-sticky="top: 100; animation: uk-animation-slide-top; bottom: #sticky-on-scroll-up" sec:authorize="hasRole('ROLE_DRIVER')">
+    <div class="uk-navbar-left">
+        <ul class="uk-navbar-nav uk-nav-parent-icon">
+            <li><a href="/"><img class="logo-size" src="https://cdn.discordapp.com/attachments/178547154908872704/542894571026251777/kwikr-logo2.png" alt="kwikrLogo"/></a></li>
+            <li><a href="/driver_dashboard"><div><span class="list-font-nav">Driver Dashboard</span></div></a></li>
+            <li><a href="/about"><div><span class="list-font-nav">About</span></div></a></li>
+        </ul>
+    </div>
+    <div class="uk-navbar-right">
+        <ul class="uk-navbar-nav uk-nav-parent-icon">
+            <li class="uk-inline">
+                <a href="#"><div class="uk-text-large" sec:authentication="name"></div></a>
+                <ul class="uk-nav uk-navbar-dropdown-nav" uk-dropdown="mode: click; pos:left-bottom;">
+                    <li><a th:href="@{'/profile'}"><span class="list-font">Profile</span></a></li>
+                    <li class="uk-nav-divider"></li>
+                    <li>
+                        <form th:action="@{/logout}" th:method="POST">
+                            <input class="uk-button uk-button-default uk-button-small login-logout" type="submit" value="Logout"/>
+                        </form>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<nav th:fragment="navbar" class="uk-navbar uk-navbar-container nav-color uk-hidden@m" style="z-index: 980;" uk-sticky="top: 100; animation: uk-animation-slide-top; bottom: #sticky-on-scroll-up" sec:authorize="hasRole('ROLE_DRIVER')">
+    <div class="uk-navbar-left">
+        <ul class="uk-navbar-nav uk-nav-parent-icon">
+            <li><a href="/"><img class="logo-size" src="https://cdn.discordapp.com/attachments/178547154908872704/542894571026251777/kwikr-logo2.png" alt="kwikrLogo"/></a></li>
+        </ul>
+    </div>
+    <div class="uk-navbar-right">
+        <a href="#"><div class="uk-text-large margin-right-10"><i class="fas fa-bars"></i></div></a>
+        <ul class="uk-nav uk-navbar-dropdown-nav" uk-dropdown="pos:left-bottom">
+            <li><a th:href="@{'/profile'}">Profile</a></li>
+            <li><a href="/driver_dashboard"><label>Driver Dashboard</label></a></li>
+            <li><a href="/about"><label>About</label></a></li>
+            <li class="uk-nav-divider"></li>
+            <li>
+                <span class="uk-text-large uk-text-capitalize" sec:authentication="name"></span>
+            </li>
+            <li>
+                <div class="uk-grid">
+                    <div class="uk-width-1-2">
+                        <form th:action="@{/logout}" th:method="POST">
+                            <input class="uk-button uk-button-default uk-button-small login-logout" style="margin-top: 0px;" type="submit" value="Logout"/>
+                        </form>
+                    </div>
+                    <div class="uk-width-1-2">
+                        <a href="/shoppingCart"><i class="fas fa-shopping-cart fa-2x uk-align-center" /></a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<footer th:fragment="footer" class="footer fixed-bottom">
+    <!--<div class="container">-->
+        <!--<p class="text-muted text-center">Place sticky footer content here.</p>-->
+    <!--</div>-->
+</footer>
+
+<div th:fragment="scripts">
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+    <script src="/static/js/uikit.js"></script>
+    <script src="/static/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.2/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.2/js/uikit-icons.min.js"></script>
+    <script src="/static/css/components/progress.css"></script>
+    <script src="/static/css/components/progress.min.css"></script>
+    <script src="/static/js/core/grid.js"></script>
+    <script src="/static/js/core/grid.min.js"></script>
+    <script src="/static/js/components/grid.js"></script>
+    <script src="/static/js/components/grid.min.js"></script>
+    <script src="/static/js/core/scrollspy.js"></script>
+    <script src="/static/js/core/scrollspy.min.js"></script>
+    <script src="/static/js/components/slideshow.js"></script>
+    <script src="/static/js/components/slideshow.min.js"></script>
+    <script src="/static/js/components/sticky.js"></script>
+    <script src="/static/js/components/sticky.min.js"></script>
+    <script src="/static/js/core/nav.js"></script>
+    <script src="/static/js/core/nav.min.js"></script>
+    <script src="/static/js/core/dropdown.js"></script>
+    <script src="/static/js/core/dropdown.min.js"></script>
+
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <script async="async" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChcZgyTawnZx-QYzO384s-G_Qxe3-pElM&amp;libraries=places&amp;callback=initAutocomplete"></script>
+
+    <script>
+        function openPick() {
+            const apikey = 'ACVgQ6x6ROGnmziYi2Iawz';
+            const client = filestack.init(apikey);
+            const options = {
+                maxFiles: 20,
+                uploadInBackground: false,
+                onOpen: () => console.log('opened!'),
+                onUploadDone: (res) => sendUrl(res),
+                storeTo: {
+                    workflows: ["1bec67a1-47c6-416f-8a18-659a1564c011"]
+                }
+            };
+            client.picker(options).open();
+            const fileInput = document.getElementById("upload_url");
+            let sendUrl = (res) =>{
+                let fileData = res.filesUploaded[0];
+                fileInput.value = fileData.url;
+            };
+        }
+    </script>
+
+    <script src="//static.filestackapi.com/filestack-js/1.x.x/filestack.min.js"></script>
+
+</div>
+
+</body>
+
+</html>

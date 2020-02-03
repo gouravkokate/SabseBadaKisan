@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials::head('Login')"></head>
+<body>
+    <div th:replace="partials::header"></div>
+    <div th:replace="partials::navbar"></div>
+<main role="main" class="uk-container uk-text-center">
+    <div class="uk-position-center login-up custom-card uk-border-rounded uk-margin-medium-top">
+        <h1>Log In</h1>
+        <div class="uk-alert-danger" th:if="${param.error}">
+            Invalid Username and Password.
+        </div>
+        <div class="uk-alert-primary" th:if="${param.logout}">
+            You have been logged out.
+        </div>
+
+        <form class="uk-form-width-large uk-visible@m uk-text-center uk-align-center" th:action="@{/login}" method="POST">
+            <label class="uk-text-large" for="username">Username</label>
+            <input class="uk-input uk-border-rounded" id="username" name="username" type="text" />
+            <label class="uk-text-large" for="password">Password</label>
+            <input class="uk-input uk-border-rounded" id="password" name="password" type="password" />
+            <div class="mt-1">
+                <button class="uk-button uk-button-primary uk-button-small uk-border-rounded" type="submit">Login</button>
+                <a th:href="@{/sign-up}" class="uk-button uk-button-primary uk-button-small uk-border-rounded">Sign Up</a>
+            </div>
+        </form>
+
+        <form class="uk-form-width-medium uk-hidden@m uk-text-center uk-align-center uk-margin-medium-top" th:action="@{/login}" method="POST">
+            <label class="uk-text-large" for="username">Username</label>
+            <input class="uk-input uk-border-rounded" id="username2" name="username" type="text" />
+            <label class="uk-text-large" for="password">Password</label>
+            <input class="uk-input uk-border-rounded" id="password2" name="password" type="password" />
+            <div class="mt-1">
+                <button class="uk-button uk-button-primary uk-button-small uk-border-rounded" type="submit">Login</button>
+                <a th:href="@{/sign-up}" class="uk-button uk-button-primary uk-button-small uk-border-rounded">Sign Up</a>
+            </div>
+        </form>
+    </div>
+</main><!-- /.container -->
+<div th:replace="partials::footer"></div>
+<div th:replace="partials::scripts"></div>
+</body>
+</html>

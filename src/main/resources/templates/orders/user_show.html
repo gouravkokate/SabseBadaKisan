@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="partials::head('User Details')"></head>
+<body>
+<div th:replace="partials::header"></div>
+<div th:replace="partials::navbar"></div>
+<main role="main" class="uk-container ">
+    <div class="custom-card uk-border-rounded uk-margin-medium-top">
+
+    <h1 class="uk-text-center uk-align-center">My Orders</h1>
+
+        <table class="uk-table uk-table-divider table-center uk-text-center">
+            <thead>
+                <tr>
+                    <th class="uk-text-center uk-width-small">Order#</th>
+                    <th class="uk-text-center uk-width-small">Order Date</th>
+                    <th class="uk-text-center uk-width-small">Order Status</th>
+                </tr>
+            </thead>
+            <th:block th:each="order : ${orders}">
+                <tr class="product-card-color uk-border-rounded">
+                    <td><p th:text="${order.id}"></p></td>
+                    <td><p th:text="${order.date}"></p></td>
+                    <th:block th:if="${order.orderStatusId.id} == 1">
+                        <td>
+                            <div th:if="${order.getOrderStatusId().id} == 1">
+                                <span>Order Placed</span>
+                                <span><em>25%</em></span>
+                                <progress class="uk-progress remove-margin" value="25" max="100"></progress>
+                            </div>
+                        </td>
+                    </th:block>
+                    <th:block th:if="${order.orderStatusId.id} == 2">
+                        <td>
+                            <div th:if="${order.getOrderStatusId().id} == 2">
+                                <span>Preparing Order</span>
+                                <span><em>50%</em></span>
+                                <progress class="uk-progress remove-margin" value="50" max="100"></progress>
+                            </div>
+                            <div th:if="${order.getOrderStatusId().id} == 3">
+                                <span>Out for Delivery</span>
+                                <span><em>75%</em></span>
+                                <progress class="uk-progress remove-margin" value="75" max="100"></progress>
+                            </div>
+                            <div th:if="${order.getOrderStatusId().id} == 4">
+                                <span>Delivered</span>
+                                <span><em>100%</em></span>
+                                <progress class="uk-progress remove-margin" value="100" max="100"></progress>
+                            </div>
+                        </td>
+                    </th:block>
+                    <th:block th:if="${order.orderStatusId.id} == 3">
+                        <td>
+                            <div th:if="${order.getOrderStatusId().id} == 2">
+                                <span>Preparing Order</span>
+                                <span><em>50%</em></span>
+                                <progress class="uk-progress remove-margin" value="50" max="100"></progress>
+                            </div>
+                            <div th:if="${order.getOrderStatusId().id} == 3">
+                                <span>Out for Delivery</span>
+                                <span><em>75%</em></span>
+                                <progress class="uk-progress remove-margin" value="75" max="100"></progress>
+                            </div>
+                            <div th:if="${order.getOrderStatusId().id} == 4">
+                                <span>Delivered</span>
+                                <span><em>100%</em></span>
+                                <progress class="uk-progress remove-margin" value="100" max="100"></progress>
+                            </div>
+                        </td>
+                    </th:block>
+                    <th:block th:if="${order.orderStatusId.id} == 4">
+                        <td>
+                            <div th:if="${order.getOrderStatusId().id} == 2">
+                                <span>Preparing Order</span>
+                                <span><em>50%</em></span>
+                                <progress class="uk-progress remove-margin" value="50" max="100"></progress>
+                            </div>
+                            <div th:if="${order.getOrderStatusId().id} == 3">
+                                <span>Out for Delivery</span>
+                                <span><em>75%</em></span>
+                                <progress class="uk-progress remove-margin" value="75" max="100"></progress>
+                            </div>
+                            <div th:if="${order.getOrderStatusId().id} == 4">
+                                <span>Delivered</span>
+                                <span><em>100%</em></span>
+                                <progress class="uk-progress remove-margin" value="100" max="100"></progress>
+                            </div>
+                        </td>
+                    </th:block>
+                    <th:block th:if="${order.orderStatusId.id} == 5">
+                        <td><p>Pending ID Verification</p></td>
+                    </th:block>
+                </tr>
+            </th:block>
+        </table>
+    </div>
+
+</main><!-- /.container -->
+<div th:replace="partials::footer"></div>
+<div th:replace="partials::scripts"></div>
+
+</body>
+</html>

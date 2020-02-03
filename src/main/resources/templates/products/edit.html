@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials::head('Edit Product')"></head>
+<body>
+    <div th:replace="partials::header"></div>
+    <div th:replace="partials::navbar"></div>
+<main role="main" class="uk-container">
+
+    <form class="uk-form-width-medium" th:action="@{'/products/' + ${product.getId()} + '/edit'}" method="POST" th:object="${product}">
+        <h1>Edit Product</h1>
+        Product:
+        <input class="uk-input uk-border-rounded" th:field="*{name}" />
+        <br />
+        Category:
+        <br />
+        <select class="uk-select uk-border-rounded" name="cat_id" id="cat_id" th:field="*{category.id}">
+            <option value="1">Beer</option>
+            <option value="2">Wine</option>
+            <option value="3">Liquor</option>
+        </select>
+        <br />
+        Price:
+        <input type="number" step="any" class="uk-input uk-border-rounded" th:field="*{price}" />
+        <br />
+        Type:
+        <textarea class="uk-textarea uk-border-rounded" rows="3" th:field="*{type}" />
+        <br />
+        Description:
+        <textarea class="uk-textarea uk-border-rounded" rows="3" th:field="*{description}" />
+        <br />
+        <input type="hidden" class="uk-input uk-border-rounded" th:field="*{imgUrl}" />
+        <div class="mt-1">
+            <input class="uk-button uk-button-default uk-button-small uk-border-rounded" type="submit" value="Edit Product" />
+        </div>
+    </form>
+
+</main><!-- /.container -->
+<div th:replace="partials::footer"></div>
+<div th:replace="partials::scripts"></div>
+
+</body>
+</html>
